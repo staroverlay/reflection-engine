@@ -1,53 +1,80 @@
-# Ollama TPS Meter
+# Reflection Engine
 
-This tool measures the Tokens Per Second (TPS) performance of Ollama language models while streaming their output in real-time.
+A versatile Python-based tool for web interaction, Selenium automation, and AI-assisted task execution.
 
 ## Features
 
-- Streams model output in real-time to the terminal
-- Calculates and displays performance metrics:
-  - Total tokens generated
-  - Evaluation time
-  - Tokens per second (TPS)
-- Supports custom prompts and model selection via command-line arguments
+- 🤖 AI-powered command generation and execution
+- 🌐 Web browsing and content retrieval
+- 📷 Website screenshot capture
+- 🔧 Custom Selenium code generation and execution
+- 🚀 Interactive session with AI model
+- 📊 Performance measurement for AI models
 
 ## Requirements
 
 - Python 3.12
-- Ollama running locally on port 11434
-- `requests` library (`pip install requests`)
+- Poetry (for dependency management)
+- Chrome browser
+- FFmpeg (for video clipping)
+
+## Dependencies
+
+Key dependencies include:
+- selenium==4.25.0
+- requests==2.32.3
+- rich==13.8.1
+- pillow==10.4.0
+- validators==0.34.0
+- webdriver-manager==4.0.2
+
+For a full list of dependencies, see the `pyproject.toml` file.
+
+## Installation
+
+1. Clone this repository
+2. Ensure you have Python 3.12 and Poetry installed
+3. Install dependencies using Poetry:
+   ```
+   poetry install
+   ```
+4. Ensure Chrome and ChromeDriver are installed
+5. Install FFmpeg for video clipping functionality
 
 ## Usage
 
-Run the script with default settings:
+Run the script in interactive mode:
 
 ```
-python ollama_tps_meter.py
+poetry run python main.py -i --model llama3.2:3b
 ```
 
-Specify a custom model and prompt:
+Available commands in interactive mode:
+- `/cmd <prompt>`: Web interaction or custom Selenium code
+- `/screenshot`: Take a screenshot of the last visited URL
+- `/selenium <task>`: Generate custom Selenium code
+- `/clip <input_file> <output_file> <start_time> <duration>`: Clip a video
+- `exit`: Exit the session
+
+## Advanced Usage
+
+Customize system prompts:
 
 ```
-python ollama_tps_meter.py --model "llama2:7b" --prompt "Explain the theory of relativity"
+poetry run python main.py -i --model llama3.2:3b --system-prompt-prefix "Your prefix here" --system-prompt-suffix "Your suffix here"
 ```
 
-### Arguments
+Measure AI model performance:
 
-- `--model`: Specifies the Ollama model to use (default: "llama3.2:latest")
-- `--prompt`: Custom prompt for the model (default: "Explain quantum computing in simple terms.")
+```
+poetry run python main.py --model llama3.2:3b --prompt "Your prompt here"
+```
 
-## Output
+## Contributing
 
-The script will:
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-1. Stream the model's response in real-time to the terminal
-2. Display performance statistics after completion:
-   - Model used
-   - Input prompt
-   - Token counts (total, prompt, and response)
-   - Evaluation time
-   - Tokens per second (TPS)
+## License
 
-## Note
+MIT-ish
 
-Ensure that Ollama is running and accessible at `http://localhost:11434` before using this tool.
